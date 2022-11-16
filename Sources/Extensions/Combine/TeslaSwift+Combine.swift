@@ -41,7 +41,21 @@ extension TeslaSwift {
         }
         return future
     }
-    
+
+    public func getUser() -> Future<User, Error> {
+        let future = Future<User, Error> { (subscriber: @escaping (Result<User, Error>) -> Void) in
+            Task {
+                do {
+                    let result = try await self.getUser()
+                    subscriber(.success(result))
+                } catch let error {
+                    subscriber(.failure(error))
+                }
+            }
+        }
+        return future
+    }
+
     public func getVehicle(_ vehicleID: String) -> Future<Vehicle, Error> {
         let future = Future<Vehicle, Error> { (subscriber: @escaping (Result<Vehicle, Error>) -> Void) in
             Task {
