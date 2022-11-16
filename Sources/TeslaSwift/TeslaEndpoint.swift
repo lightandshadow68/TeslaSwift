@@ -101,7 +101,7 @@ extension Endpoint {
 
             // User
             case .user:
-                return "/api/1/user/me"
+                return "/api/1/users/me"
         }
 	}
 	
