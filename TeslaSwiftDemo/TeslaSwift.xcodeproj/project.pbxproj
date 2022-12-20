@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028C4A9A292504530051F472 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028C4A99292504530051F472 /* User.swift */; };
+		028C4A9B292504530051F472 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028C4A99292504530051F472 /* User.swift */; };
 		0C7ED84E15E6213553283EE1 /* Pods_TeslaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCF54A5D3EEC6D742F8BA4D /* Pods_TeslaSwift.framework */; };
 		170D32D322D0EBCD00B6A51A /* NearbyChargingSites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D32D222D0EBCD00B6A51A /* NearbyChargingSites.swift */; };
 		170D32D622D0EE4D00B6A51A /* NearbyChargingSites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D32D222D0EBCD00B6A51A /* NearbyChargingSites.swift */; };
@@ -182,6 +184,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		028C4A99292504530051F472 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		12B3E002E01A2F394D2418B5 /* Pods-TeslaSwift-TeslaSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaSwift-TeslaSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeslaSwift-TeslaSwiftTests/Pods-TeslaSwift-TeslaSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		170D32D222D0EBCD00B6A51A /* NearbyChargingSites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyChargingSites.swift; sourceTree = "<group>"; };
 		1759B7412228D3210032EB4C /* SentryModeCommandOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentryModeCommandOptions.swift; sourceTree = "<group>"; };
@@ -402,6 +405,7 @@
 				CF0D2F241D95A4A900E5A304 /* VehicleState.swift */,
 				1AA73E88235B3A960088D66A /* WindowControlCommandOptions.swift */,
 				CF67D221272D49D100738CB3 /* ChargeAmpsCommandOptions.swift */,
+				028C4A99292504530051F472 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -658,8 +662,8 @@
 				TargetAttributes = {
 					CFD2E7C01C8A13D60005E882 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = RMBS8HAUHZ;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Manual;
 					};
 					CFD2E7D61C8A13D60005E882 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -855,6 +859,7 @@
 				1AC5CB1222DA7807009B7190 /* TeslaSwift+Combine.swift in Sources */,
 				7D161BA01E9DC805001C89ED /* StreamEvent.swift in Sources */,
 				CF67D222272D49D100738CB3 /* ChargeAmpsCommandOptions.swift in Sources */,
+				028C4A9A292504530051F472 /* User.swift in Sources */,
 				CF1BD5931DD5041800E4C493 /* ChargeLimitPercentageCommandOptions.swift in Sources */,
 				CFB5D7B71E66088F003EA1EF /* ErrorMessage.swift in Sources */,
 				65F055182173DB3D00BE3BE5 /* ShareToVehicleOptions.swift in Sources */,
@@ -969,6 +974,7 @@
 				1AC5CB1322DA7807009B7190 /* TeslaSwift+Combine.swift in Sources */,
 				1AE27F7822D91DE900456310 /* TeslaSwift+PromiseKit.swift in Sources */,
 				CF4D4D0F1D81F46B00CCE6ED /* TeslaEndpoint.swift in Sources */,
+				028C4A9B292504530051F472 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,12 +1120,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = RMBS8HAUHZ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = joao.TeslaSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1130,12 +1138,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = RMBS8HAUHZ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = joao.TeslaSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

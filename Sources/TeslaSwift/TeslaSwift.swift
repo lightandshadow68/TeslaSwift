@@ -202,6 +202,18 @@ extension TeslaSwift {
         let response: ArrayResponse<Product> = try await request(.products, body: nullBody)
         return response.response
     }
+
+    /**
+     Fetches the currently authenticated user
+
+     - returns: A User.
+     */
+    public func getUser() async throws -> User {
+        _ = try await checkAuthentication()
+        let response: Response<User> = try await request(.user, body: nullBody)
+        return response.response
+    }
+
     
     /**
     Fetchs the summary of a vehicle

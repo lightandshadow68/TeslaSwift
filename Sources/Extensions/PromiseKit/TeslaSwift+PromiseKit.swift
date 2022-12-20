@@ -50,6 +50,24 @@ extension TeslaSwift {
         return promise
     }
 
+    /**
+     Fetchs the authenticated user
+
+     - returns: A Promise with an User.
+     */
+    public func getVehicles() -> Promise<User> {
+        let (promise, seal) = Promise<User>.pending()
+        Task {
+            do {
+                let result = try await self.getUser()
+                seal.fulfill(result)
+            } catch let error {
+                seal.reject(error)
+            }
+        }
+        return promise
+    }
+
     public func getVehicle(_ vehicleID: String) -> Promise<Vehicle> {
         let (promise, seal) = Promise<Vehicle>.pending()
         Task {

@@ -28,7 +28,22 @@ extension TeslaSwift {
         }
         return future
     }
-    
+
+    public func getUser() -> Single<User> {
+        let future = Single<User>.create { (single: @escaping (SingleEvent<User>) -> Void) -> Disposable in
+            Task {
+                do {
+                    let result = try await self.getUser()
+                    single(.success(result))
+                } catch let error {
+                    single(.failure(error))
+                }
+            }
+            return Disposables.create { }
+        }
+        return future
+    }
+
     public func getVehicles() -> Single<[Vehicle]> {
         let future = Single<[Vehicle]>.create { (single: @escaping (SingleEvent<[Vehicle]>) -> Void) -> Disposable in
             Task {
