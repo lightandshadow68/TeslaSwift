@@ -42,7 +42,6 @@ extension TeslaSwift {
         return token != nil && (token?.isValid ?? false)
     }
 
-    #if canImport(WebKit) && canImport(UIKit)
     /**
      Performs the authentication with the Tesla API for web logins
 
@@ -83,7 +82,6 @@ extension TeslaSwift {
         }
         return (teslaWebLoginViewController, result)
     }
-    #endif
 
     private func getAuthenticationTokenForWeb(code: String) async throws -> AuthToken {
 
