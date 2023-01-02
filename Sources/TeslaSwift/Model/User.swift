@@ -8,10 +8,10 @@
 
 import Foundation
 
-open class User: Codable {
-    open var email: String?
-    open var fullName: String?
-    open var profileImageUrl: String?
+public struct User: Codable, Sendable {
+    public var email: String?
+    public var fullName: String?
+    public var profileImageUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case email              = "email"
@@ -19,7 +19,7 @@ open class User: Codable {
         case profileImageUrl    = "profile_image_url"
     }
 
-    required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         email = try? container.decode(String.self, forKey: .email)

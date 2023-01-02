@@ -8,15 +8,15 @@
 
 import Foundation
 
-open class ScheduledDepartureCommandOptions: Encodable {
+public struct ScheduledDepartureCommandOptions: Encodable, Sendable {
     
-    open var enable: Bool
-    open var departureTime: Int
-    open var preconditioningEnabled: Bool
-    open var preconditioningWeekdaysOnly: Bool
-    open var offPeakChargingEnabled: Bool
-    open var endOffPeakTime: Int
-    open var offPeakChargingWeekdaysOnly: Bool
+    public var enable: Bool
+    public var departureTime: Int
+    public var preconditioningEnabled: Bool
+    public var preconditioningWeekdaysOnly: Bool
+    public var offPeakChargingEnabled: Bool
+    public var endOffPeakTime: Int
+    public var offPeakChargingWeekdaysOnly: Bool
     
     public init(enable: Bool, departureTime: Int, preconditioningEnabled: Bool, preconditioningWeekdaysOnly: Bool, offPeakChargingEnabled: Bool, endOffPeakTime: Int, offPeakChargingWeekdaysOnly: Bool) {
         self.enable = enable

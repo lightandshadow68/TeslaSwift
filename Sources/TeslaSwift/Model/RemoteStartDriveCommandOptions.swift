@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class RemoteStartDriveCommandOptions: Encodable {
+public struct RemoteStartDriveCommandOptions: Encodable, Sendable {
 
-	open var password: String?
+	public var password: String?
     public init(password: String) {
 		self.password = password
 	}

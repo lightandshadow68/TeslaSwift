@@ -9,19 +9,19 @@
 import Foundation
 
 // MARK: - Welcome
-open class BatteryData: Codable {
-    open var siteName: String
-    open var energyLeft: Double
-    open var totalPackEnergy: Double
-    open var gridStatus: String
-    open var defaultRealMode: String
-    open var operation: String
-    open var installationDate: Date
-    open var batteryCount: Int
-    open var backup: Backup
-    open var userSettings: UserSettings
-    open var components: Components
-    open var powerReading: [PowerReading]
+public struct BatteryData: Codable, Sendable {
+    public var siteName: String
+    public var energyLeft: Double
+    public var totalPackEnergy: Double
+    public var gridStatus: String
+    public var defaultRealMode: String
+    public var operation: String
+    public var installationDate: Date
+    public var batteryCount: Int
+    public var backup: Backup
+    public var userSettings: UserSettings
+    public var components: Components
+    public var powerReading: [PowerReading]
 
     enum CodingKeys: String, CodingKey {
         case siteName = "site_name"
@@ -39,9 +39,9 @@ open class BatteryData: Codable {
     }
     
     // MARK: - Backup
-    open class Backup: Codable {
-        open var backupReservePercent: Double
-        open var events: [Event]
+    public struct Backup: Codable, Sendable {
+        public var backupReservePercent: Double
+        public var events: [Event]
 
         enum CodingKeys: String, CodingKey {
             case backupReservePercent = "backup_reserve_percent"
@@ -50,33 +50,33 @@ open class BatteryData: Codable {
     }
 
     // MARK: - Event
-    open class Event: Codable {
+    public struct Event: Codable, Sendable {
         let timestamp: Date
         let duration: Int
     }
 
     // MARK: - Components
-    open class Components: Codable {
-        open var solar: Bool
-        open var solarType: String
-        open var battery: Bool
-        open var grid: Bool
-        open var backup: Bool
-        open var gateway: String
-        open var loadMeter: Bool
-        open var touCapable: Bool
-        open var stormModeCapable: Bool
-        open var flexEnergyRequestCapable: Bool
-        open var carChargingDataSupported: Bool
-        open var offGridVehicleChargingReserveSupported: Bool
-        open var vehicleChargingPerformanceViewEnabled: Bool
-        open var vehicleChargingSolarOffsetViewEnabled: Bool
-        open var batterySolarOffsetViewEnabled: Bool
-        open var setIslandingModeEnabled: Bool
-        open var backupTimeRemainingEnabled: Bool
-        open var batteryType: String
-        open var configurable: Bool
-        open var gridServicesEnabled: Bool
+    public struct Components: Codable, Sendable {
+        public var solar: Bool
+        public var solarType: String
+        public var battery: Bool
+        public var grid: Bool
+        public var backup: Bool
+        public var gateway: String
+        public var loadMeter: Bool
+        public var touCapable: Bool
+        public var stormModeCapable: Bool
+        public var flexEnergyRequestCapable: Bool
+        public var carChargingDataSupported: Bool
+        public var offGridVehicleChargingReserveSupported: Bool
+        public var vehicleChargingPerformanceViewEnabled: Bool
+        public var vehicleChargingSolarOffsetViewEnabled: Bool
+        public var batterySolarOffsetViewEnabled: Bool
+        public var setIslandingModeEnabled: Bool
+        public var backupTimeRemainingEnabled: Bool
+        public var batteryType: String
+        public var configurable: Bool
+        public var gridServicesEnabled: Bool
 
         enum CodingKeys: String, CodingKey {
             case solar
@@ -100,13 +100,13 @@ open class BatteryData: Codable {
     }
 
     // MARK: - PowerReading
-    open class PowerReading: Codable {
-        open var timestamp: Date
-        open var loadPower: Double
-        open var solarPower: Double
-        open var gridPower: Double
-        open var batteryPower: Double
-        open var generatorPower: Double
+    public struct PowerReading: Codable, Sendable {
+        public var timestamp: Date
+        public var loadPower: Double
+        public var solarPower: Double
+        public var gridPower: Double
+        public var batteryPower: Double
+        public var generatorPower: Double
 
         enum CodingKeys: String, CodingKey {
             case timestamp
@@ -119,10 +119,10 @@ open class BatteryData: Codable {
     }
 
     // MARK: - UserSettings
-    open class UserSettings: Codable {
-        open var stormModeEnabled: Bool
-        open var syncGridAlertEnabled: Bool
-        open var breakerAlertEnabled: Bool
+    public struct UserSettings: Codable, Sendable {
+        public var stormModeEnabled: Bool
+        public var syncGridAlertEnabled: Bool
+        public var breakerAlertEnabled: Bool
 
         enum CodingKeys: String, CodingKey {
             case stormModeEnabled = "storm_mode_enabled"

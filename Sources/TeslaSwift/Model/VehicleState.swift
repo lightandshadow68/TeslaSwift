@@ -8,22 +8,22 @@
 
 import Foundation
 
-open class VehicleState: Codable {
+public struct VehicleState: Codable, Sendable {
 	
-	open class MediaState: Codable {
-		open var remoteControlEnabled: Bool?
+	public struct MediaState: Codable, Sendable {
+		public var remoteControlEnabled: Bool?
 		
 		enum CodingKeys: String, CodingKey {
 			case remoteControlEnabled = "remote_control_enabled"
 		}
 	}
 	
-	open class SpeedLimitMode: Codable {
-		open var active: Bool?
-		open var currentLimit: Measurement<UnitSpeed>?
-		open var maxLimit: Measurement<UnitSpeed>?
-		open var minLimit: Measurement<UnitSpeed>?
-		open var pinCodeSet: Bool?
+    public struct SpeedLimitMode: Codable, Sendable {
+		public var active: Bool?
+		public var currentLimit: Measurement<UnitSpeed>?
+		public var maxLimit: Measurement<UnitSpeed>?
+		public var minLimit: Measurement<UnitSpeed>?
+		public var pinCodeSet: Bool?
 		
 		enum CodingKeys: String, CodingKey {
 			case active = "active"
@@ -33,7 +33,7 @@ open class VehicleState: Codable {
 			case pinCodeSet = "pin_code_set"
 		}
 		
-		required public init(from decoder: Decoder) throws {
+		public init(from decoder: Decoder) throws {
 			
 			func milesDecoder(container: KeyedDecodingContainer<VehicleState.SpeedLimitMode.CodingKeys>, key: CodingKeys) -> Measurement<UnitSpeed>? {
 				if let value = try? container.decode(Double.self, forKey: key) {
@@ -65,84 +65,84 @@ open class VehicleState: Codable {
 		
 	}
 	
-	open var apiVersion: Int?
+	public var apiVersion: Int?
 	
-	open var autoparkState: String?
-	open var autoparkStateV2: String?
-	open var autoparkStyle: String?
+	public var autoparkState: String?
+	public var autoparkStateV2: String?
+	public var autoparkStyle: String?
 	
-	open var calendarSupported: Bool?
+	public var calendarSupported: Bool?
 	
-	open var firmwareVersion: String?
+	public var firmwareVersion: String?
 	
 	private var centerDisplayStateBool: Int?
-	open var centerDisplayState: Bool? { return centerDisplayStateBool == 1 }
+	public var centerDisplayState: Bool? { return centerDisplayStateBool == 1 }
 	
-	private var driverDoorOpenBool: Int?
-	open var driverDoorOpen: Bool? { return (driverDoorOpenBool ?? 0) > 0 }
-    private var driverWindowOpenBool: Int?
-    open var driverWindowOpen: Bool? { return (driverWindowOpenBool ?? 0) > 0 }
+	private var driverDoorpublicBool: Int?
+	public var driverDoorpublic: Bool? { return (driverDoorpublicBool ?? 0) > 0 }
+    private var driverWindowpublicBool: Int?
+    public var driverWindowpublic: Bool? { return (driverWindowpublicBool ?? 0) > 0 }
 
-	private var driverRearDoorOpenBool: Int?
-	open var driverRearDoorOpen: Bool? { return (driverRearDoorOpenBool ?? 0) > 0 }
-    private var driverRearWindowOpenBool: Int?
-    open var driverRearWindowOpen: Bool? { return (driverRearWindowOpenBool ?? 0) > 0 }
+	private var driverRearDoorpublicBool: Int?
+	public var driverRearDoorpublic: Bool? { return (driverRearDoorpublicBool ?? 0) > 0 }
+    private var driverRearWindowpublicBool: Int?
+    public var driverRearWindowpublic: Bool? { return (driverRearWindowpublicBool ?? 0) > 0 }
 	
-	private var frontTrunkOpenBool: Int?
-	open var frontTrunkOpen: Bool? { return (frontTrunkOpenBool ?? 0) > 0 }
+	private var frontTrunkpublicBool: Int?
+	public var frontTrunkpublic: Bool? { return (frontTrunkpublicBool ?? 0) > 0 }
 	
-	open var homelinkNearby: Bool?
-    open var homelinkDeviceCount: Int?
-	open var isUserPresent: Bool?
+	public var homelinkNearby: Bool?
+    public var homelinkDeviceCount: Int?
+	public var isUserPresent: Bool?
 	
-	open var lastAutoparkError: String?
+	public var lastAutoparkError: String?
 	
-	open var locked: Bool?
+	public var locked: Bool?
 	
-	open var mediaState: MediaState?
+	public var mediaState: MediaState?
 	
-	open var notificationsSupported: Bool?
+	public var notificationsSupported: Bool?
 	
-	open var odometer: Double?
+	public var odometer: Double?
 	
-	open var parsedCalendarSupported: Bool?
+	public var parsedCalendarSupported: Bool?
 	
-	private var passengerDoorOpenBool: Int?
-	open var passengerDoorOpen: Bool? { return (passengerDoorOpenBool ?? 0) > 0 }
-    private var passengerWindowOpenBool: Int?
-    open var passengerWindowOpen: Bool? { return (passengerWindowOpenBool ?? 0) > 0 }
+	private var passengerDoorpublicBool: Int?
+	public var passengerDoorpublic: Bool? { return (passengerDoorpublicBool ?? 0) > 0 }
+    private var passengerWindowpublicBool: Int?
+    public var passengerWindowpublic: Bool? { return (passengerWindowpublicBool ?? 0) > 0 }
 
-	private var passengerRearDoorOpenBool: Int?
-	open var passengerRearDoorOpen: Bool? { return (passengerRearDoorOpenBool ?? 0) > 0 }
-    private var passengerRearWindowOpenBool: Int?
-    open var passengerRearWindowOpen: Bool? { return (passengerRearWindowOpenBool ?? 0) > 0 }
+	private var passengerRearDoorpublicBool: Int?
+	public var passengerRearDoorpublic: Bool? { return (passengerRearDoorpublicBool ?? 0) > 0 }
+    private var passengerRearWindowpublicBool: Int?
+    public var passengerRearWindowpublic: Bool? { return (passengerRearWindowpublicBool ?? 0) > 0 }
 	
-	open var remoteStart: Bool?
-	open var remoteStartSupported: Bool?
+	public var remoteStart: Bool?
+	public var remoteStartSupported: Bool?
 	
-	private var rearTrunkOpenInt: Int?
-	open var rearTrunkOpen: Bool? {
-		if let rearTrunkOpenInt = rearTrunkOpenInt {
-			return rearTrunkOpenInt > 0
+	private var rearTrunkpublicInt: Int?
+	public var rearTrunkpublic: Bool? {
+		if let rearTrunkpublicInt = rearTrunkpublicInt {
+			return rearTrunkpublicInt > 0
 		} else {
 			return false
 		}
 	}
 	
-	open var sentryMode: Bool?
+	public var sentryMode: Bool?
     
-    open var softwareUpdate: SoftwareUpdate?
-	open var speedLimitMode: SpeedLimitMode?
+    public var softwareUpdate: SoftwareUpdate?
+	public var speedLimitMode: SpeedLimitMode?
 	
-	open var sunRoofPercentageOpen: Int? // null if not installed
-	open var sunRoofState: String?
+	public var sunRoofPercentagepublic: Int? // null if not installed
+	public var sunRoofState: String?
 	
-	open var timeStamp: Double?
+	public var timeStamp: Double?
 	
-	open var valetMode: Bool?
-	open var valetPinNeeded: Bool?
+	public var valetMode: Bool?
+	public var valetPinNeeded: Bool?
 	
-	open var vehicleName: String?
+	public var vehicleName: String?
 	
 	// MARK: Codable protocol
 	
@@ -159,11 +159,11 @@ open class VehicleState: Codable {
 		
 		case centerDisplayStateBool		 = "center_display_state"
 		
-		case driverDoorOpenBool			 = "df"
-        case driverWindowOpenBool        = "fd_window"
-		case driverRearDoorOpenBool		 = "dr"
-        case driverRearWindowOpenBool    = "rd_window"
-		case frontTrunkOpenBool			 = "ft"
+		case driverDoorpublicBool			 = "df"
+        case driverWindowpublicBool        = "fd_window"
+		case driverRearDoorpublicBool		 = "dr"
+        case driverRearWindowpublicBool    = "rd_window"
+		case frontTrunkpublicBool			 = "ft"
 		
 		case homelinkNearby			 = "homelink_nearby"
         case homelinkDeviceCount = "homelink_device_count"
@@ -180,22 +180,22 @@ open class VehicleState: Codable {
 		
 		case parsedCalendarSupported = "parsed_calendar_supported"
 		
-		case passengerDoorOpenBool		 = "pf"
-        case passengerWindowOpenBool     = "fp_window"
-		case passengerRearDoorOpenBool	 = "pr"
-        case passengerRearWindowOpenBool = "rp_window"
+		case passengerDoorpublicBool		 = "pf"
+        case passengerWindowpublicBool     = "fp_window"
+		case passengerRearDoorpublicBool	 = "pr"
+        case passengerRearWindowpublicBool = "rp_window"
 		
 		case remoteStart			 = "remote_start"
 		case remoteStartSupported	 = "remote_start_supported"
 		
-		case rearTrunkOpenInt			 = "rt"
+		case rearTrunkpublicInt			 = "rt"
 		
 		case sentryMode			= "sentry_mode"
 		
         case softwareUpdate         = "software_update"
 		case speedLimitMode 		= "speed_limit_mode"
 
-		case sunRoofPercentageOpen	 = "sun_roof_percent_open"
+		case sunRoofPercentagepublic	 = "sun_roof_percent_public"
 		case sunRoofState			 = "sun_roof_state"
 		
 		case timeStamp				= "timestamp"
@@ -206,7 +206,7 @@ open class VehicleState: Codable {
 		case vehicleName			 = "vehicle_name"
 	}
 	
-	required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 
 		apiVersion = try? container.decode(Int.self, forKey: .apiVersion)
@@ -221,12 +221,12 @@ open class VehicleState: Codable {
 		
 		centerDisplayStateBool = try? container.decode(Int.self, forKey: .centerDisplayStateBool)
 		
-		driverDoorOpenBool = try? container.decode(Int.self, forKey: .driverDoorOpenBool)
-        driverWindowOpenBool = try? container.decode(Int.self, forKey: .driverWindowOpenBool)
-		driverRearDoorOpenBool = try? container.decode(Int.self, forKey: .driverRearDoorOpenBool)
-        driverRearWindowOpenBool = try? container.decode(Int.self, forKey: .driverRearWindowOpenBool)
+		driverDoorpublicBool = try? container.decode(Int.self, forKey: .driverDoorpublicBool)
+        driverWindowpublicBool = try? container.decode(Int.self, forKey: .driverWindowpublicBool)
+		driverRearDoorpublicBool = try? container.decode(Int.self, forKey: .driverRearDoorpublicBool)
+        driverRearWindowpublicBool = try? container.decode(Int.self, forKey: .driverRearWindowpublicBool)
 		
-		frontTrunkOpenBool = try? container.decode(Int.self, forKey: .frontTrunkOpenBool)
+		frontTrunkpublicBool = try? container.decode(Int.self, forKey: .frontTrunkpublicBool)
 		
 		homelinkNearby = try? container.decode(Bool.self, forKey: .homelinkNearby)
         homelinkDeviceCount = try? container.decode(Int.self, forKey: .homelinkNearby)
@@ -243,21 +243,21 @@ open class VehicleState: Codable {
 		
 		parsedCalendarSupported = try? container.decode(Bool.self, forKey: .parsedCalendarSupported)
 		
-		passengerDoorOpenBool = try? container.decode(Int.self, forKey: .passengerDoorOpenBool)
-        passengerWindowOpenBool = try? container.decode(Int.self, forKey: .passengerWindowOpenBool)
-		passengerRearDoorOpenBool = try? container.decode(Int.self, forKey: .passengerRearDoorOpenBool)
-        passengerRearWindowOpenBool = try? container.decode(Int.self, forKey: .passengerRearWindowOpenBool)
+		passengerDoorpublicBool = try? container.decode(Int.self, forKey: .passengerDoorpublicBool)
+        passengerWindowpublicBool = try? container.decode(Int.self, forKey: .passengerWindowpublicBool)
+		passengerRearDoorpublicBool = try? container.decode(Int.self, forKey: .passengerRearDoorpublicBool)
+        passengerRearWindowpublicBool = try? container.decode(Int.self, forKey: .passengerRearWindowpublicBool)
 		
 		remoteStart = try? container.decode(Bool.self, forKey: .remoteStart)
 		remoteStartSupported = try? container.decode(Bool.self, forKey: .remoteStartSupported)
 		
-		rearTrunkOpenInt = try? container.decode(Int.self, forKey: .rearTrunkOpenInt)
+		rearTrunkpublicInt = try? container.decode(Int.self, forKey: .rearTrunkpublicInt)
 
 		sentryMode = try? container.decode(Bool.self, forKey: .sentryMode)
 		
 		softwareUpdate = try? container.decode(SoftwareUpdate.self, forKey: .softwareUpdate)
 		speedLimitMode = try? container.decode(SpeedLimitMode.self, forKey: .speedLimitMode)
-		sunRoofPercentageOpen = try? container.decode(Int.self, forKey: .sunRoofPercentageOpen)
+		sunRoofPercentagepublic = try? container.decode(Int.self, forKey: .sunRoofPercentagepublic)
 		sunRoofState = try? container.decode(String.self, forKey: .sunRoofState)
 		
 		timeStamp = try? container.decode(Double.self, forKey: .timeStamp)
@@ -279,11 +279,11 @@ open class VehicleState: Codable {
 		try container.encodeIfPresent(calendarSupported, forKey: .calendarSupported)
 		try container.encodeIfPresent(firmwareVersion, forKey: .firmwareVersion)
 		try container.encodeIfPresent(centerDisplayStateBool, forKey: .centerDisplayStateBool)
-		try container.encodeIfPresent(driverDoorOpenBool, forKey: .driverDoorOpenBool)
-        try container.encodeIfPresent(driverDoorOpenBool, forKey: .driverWindowOpenBool)
-		try container.encodeIfPresent(driverRearDoorOpenBool, forKey: .driverRearDoorOpenBool)
-        try container.encodeIfPresent(driverRearWindowOpenBool, forKey: .driverRearWindowOpenBool)
-		try container.encodeIfPresent(frontTrunkOpenBool, forKey: .frontTrunkOpenBool)
+		try container.encodeIfPresent(driverDoorpublicBool, forKey: .driverDoorpublicBool)
+        try container.encodeIfPresent(driverDoorpublicBool, forKey: .driverWindowpublicBool)
+		try container.encodeIfPresent(driverRearDoorpublicBool, forKey: .driverRearDoorpublicBool)
+        try container.encodeIfPresent(driverRearWindowpublicBool, forKey: .driverRearWindowpublicBool)
+		try container.encodeIfPresent(frontTrunkpublicBool, forKey: .frontTrunkpublicBool)
 		try container.encodeIfPresent(homelinkNearby, forKey: .homelinkNearby)
         try container.encodeIfPresent(homelinkDeviceCount, forKey: .homelinkDeviceCount)
 		try container.encodeIfPresent(isUserPresent, forKey: .isUserPresent)
@@ -293,17 +293,17 @@ open class VehicleState: Codable {
 		try container.encodeIfPresent(notificationsSupported, forKey: .notificationsSupported)
 		try container.encodeIfPresent(odometer, forKey: .odometer)
 		try container.encodeIfPresent(parsedCalendarSupported, forKey: .parsedCalendarSupported)
-		try container.encodeIfPresent(passengerDoorOpenBool, forKey: .passengerDoorOpenBool)
-        try container.encodeIfPresent(passengerWindowOpenBool, forKey: .passengerWindowOpenBool)
-		try container.encodeIfPresent(passengerRearDoorOpenBool, forKey: .passengerRearDoorOpenBool)
-        try container.encodeIfPresent(passengerRearWindowOpenBool, forKey: .passengerRearWindowOpenBool)
+		try container.encodeIfPresent(passengerDoorpublicBool, forKey: .passengerDoorpublicBool)
+        try container.encodeIfPresent(passengerWindowpublicBool, forKey: .passengerWindowpublicBool)
+		try container.encodeIfPresent(passengerRearDoorpublicBool, forKey: .passengerRearDoorpublicBool)
+        try container.encodeIfPresent(passengerRearWindowpublicBool, forKey: .passengerRearWindowpublicBool)
 		try container.encodeIfPresent(remoteStart, forKey: .remoteStart)
 		try container.encodeIfPresent(remoteStartSupported, forKey: .remoteStartSupported)
-		try container.encodeIfPresent(rearTrunkOpenInt, forKey: .rearTrunkOpenInt)
+		try container.encodeIfPresent(rearTrunkpublicInt, forKey: .rearTrunkpublicInt)
 		try container.encodeIfPresent(sentryMode, forKey: .sentryMode)
 		try container.encodeIfPresent(softwareUpdate, forKey: .softwareUpdate)
 		try container.encodeIfPresent(speedLimitMode, forKey: .speedLimitMode)
-		try container.encodeIfPresent(sunRoofPercentageOpen, forKey: .sunRoofPercentageOpen)
+		try container.encodeIfPresent(sunRoofPercentagepublic, forKey: .sunRoofPercentagepublic)
 		try container.encodeIfPresent(sunRoofState, forKey: .sunRoofState)
 		try container.encodeIfPresent(timeStamp, forKey: .timeStamp)
 		try container.encodeIfPresent(valetMode, forKey: .valetMode)

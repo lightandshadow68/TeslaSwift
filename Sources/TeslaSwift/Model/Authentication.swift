@@ -12,19 +12,19 @@ import CryptoKit
 private let oAuthClientID: String = "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384"
 private let oAuthWebClientID: String = "ownerapi"
 private let oAuthClientSecret: String = "c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3"
-private let oAuthScope: String = "openid email offline_access"
+private let oAuthScope: String = "publicid email offline_access"
 private let oAuthRedirectURI: String = "https://auth.tesla.com/void/callback"
 
-open class AuthToken: Codable {
+public struct AuthToken: Codable, Sendable {
 	
-	open var accessToken: String?
-	open var tokenType: String?
-	open var createdAt: Date? = Date()
-	open var expiresIn: TimeInterval?
-	open var refreshToken: String?
-    open var idToken: String?
+	public var accessToken: String?
+	public var tokenType: String?
+	public var createdAt: Date? = Date()
+	public var expiresIn: TimeInterval?
+	public var refreshToken: String?
+    public var idToken: String?
 	
-	open var isValid: Bool {
+	public var isValid: Bool {
 		if let createdAt = createdAt, let expiresIn = expiresIn {
 			return -createdAt.timeIntervalSinceNow < expiresIn
 		} else {
@@ -36,7 +36,7 @@ open class AuthToken: Codable {
 		self.accessToken = accessToken
 	}
 
-    public required init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         accessToken = try? container.decode(String.self, forKey: .accessToken)
@@ -58,7 +58,7 @@ open class AuthToken: Codable {
 	}
 }
 
-class AuthTokenRequest: Encodable {
+struct AuthTokenRequest: Encodable, Sendable {
 	
     enum GrantType: String, Encodable {
         case password
@@ -95,7 +95,7 @@ class AuthTokenRequest: Encodable {
 	}
 }
 
-class AuthTokenRequestWeb: Encodable {
+struct AuthTokenRequestWeb: Encodable {
 
     enum GrantType: String, Encodable {
         case refreshToken = "refresh_token"
@@ -141,7 +141,7 @@ class AuthTokenRequestWeb: Encodable {
     }
 }
 
-class AuthCodeRequest: Encodable {
+struct AuthCodeRequest: Encodable {
 
     var responseType: String = "code"
     var clientID = oAuthWebClientID

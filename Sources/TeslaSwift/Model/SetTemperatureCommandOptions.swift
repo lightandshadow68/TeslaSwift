@@ -8,10 +8,10 @@
 
 import Foundation
 
-open class SetTemperatureCommandOptions: Encodable {
+public struct SetTemperatureCommandOptions: Encodable, Sendable {
 
-	open var driverTemp: Double?
-	open var passengerTemp: Double?
+	public var driverTemp: Double?
+	public var passengerTemp: Double?
     public init(driverTemperature: Double, passengerTemperature: Double) {
 		driverTemp = driverTemperature
 		passengerTemp = passengerTemperature

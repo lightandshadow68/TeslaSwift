@@ -8,15 +8,15 @@
 
 import Foundation
 
-open class SoftwareUpdate: Codable {
+public struct SoftwareUpdate: Codable, Sendable {
 	
-    open var status: String?
-    open var expectedDuration: Int?
-    open var scheduledTime: Double?
-    open var warningTimeRemaining: Double?
-    open var downloadPercentage: Int?
-    open var installPercentage: Int?
-    open var version: String?
+    public var status: String?
+    public var expectedDuration: Int?
+    public var scheduledTime: Double?
+    public var warningTimeRemaining: Double?
+    public var downloadPercentage: Int?
+    public var installPercentage: Int?
+    public var version: String?
     
     enum CodingKeys: String, CodingKey {
         case status                  = "status"

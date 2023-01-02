@@ -8,10 +8,10 @@
 
 import Foundation
 
-open class RemoteSeatHeaterRequestOptions: Encodable {
+public struct RemoteSeatHeaterRequestOptions: Encodable, Sendable {
 
-    open var seat: HeatedSeat
-    open var level: HeatLevel
+    public var seat: HeatedSeat
+    public var level: HeatLevel
 
     public init(seat: HeatedSeat, level: HeatLevel) {
         self.seat = seat
@@ -24,7 +24,7 @@ open class RemoteSeatHeaterRequestOptions: Encodable {
     }
 }
 
-public enum HeatedSeat: Int, Encodable {
+public enum HeatedSeat: Int, Encodable, Sendable {
     case driver = 0
     case passenger = 1
     case rearLeft = 2
@@ -36,7 +36,7 @@ public enum HeatedSeat: Int, Encodable {
     case thirdRowRight = 8
 }
 
-public enum HeatLevel: Int, Encodable {
+public enum HeatLevel: Int, Encodable, Sendable {
 	case off = 0
 	case low = 1
 	case mid = 2

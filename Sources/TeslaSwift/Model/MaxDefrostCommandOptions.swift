@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class MaxDefrostCommandOptions: Encodable {
-    open var on: Bool
+public struct MaxDefrostCommandOptions: Encodable, Sendable {
+    public var on: Bool
     
     public init(state: Bool) {
         on = state

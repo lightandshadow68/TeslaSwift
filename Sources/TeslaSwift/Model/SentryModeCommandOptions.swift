@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class SentryModeCommandOptions: Encodable {
-    open var on: Bool
+public struct SentryModeCommandOptions: Encodable, Sendable {
+    public var on: Bool
 
     public init(activated: Bool) {
         self.on = activated

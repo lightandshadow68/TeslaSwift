@@ -8,13 +8,13 @@
 
 import Foundation
 
-open class GuiSettings: Codable {
-	open var distanceUnits: String?
-	open var temperatureUnits: String?
-	open var chargeRateUnits: String?
-	open var time24Hours: Bool?
-	open var rangeDisplay: String?
-	open var timeStamp: Double?
+public struct GuiSettings: Codable, Sendable {
+	public var distanceUnits: String?
+	public var temperatureUnits: String?
+	public var chargeRateUnits: String?
+	public var time24Hours: Bool?
+	public var rangeDisplay: String?
+	public var timeStamp: Double?
 
 	enum CodingKeys: String, CodingKey {
 		case distanceUnits		 = "gui_distance_units"
@@ -25,7 +25,7 @@ open class GuiSettings: Codable {
 		case timeStamp			= "timestamp"
 	}
 	
-	required public init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		distanceUnits = try? container.decode(String.self, forKey: .distanceUnits)
 		temperatureUnits = try? container.decode(String.self, forKey: .temperatureUnits)

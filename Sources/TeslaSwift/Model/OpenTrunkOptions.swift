@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum OpenTrunkOptions: String, Codable {
+public enum OpenTrunkOptions: String, Codable, Sendable {
 	
 	case rear
 	case front

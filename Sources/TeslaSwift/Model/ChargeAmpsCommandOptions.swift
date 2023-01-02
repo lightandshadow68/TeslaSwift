@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class ChargeAmpsCommandOptions: Encodable {
+public struct ChargeAmpsCommandOptions: Encodable, Sendable {
 
-    open var amps: Int
+    public var amps: Int
 
     public init(amps: Int) {
         self.amps = amps

@@ -9,7 +9,7 @@
 import Foundation
 import os.log
 
-public enum TeslaError: Error, Equatable {
+public enum TeslaError: Error, Equatable, Sendable {
     case networkError(error: NSError)
     case authenticationRequired
     case authenticationFailed
@@ -175,7 +175,7 @@ extension TeslaSwift {
 		email = nil
 		password = nil
 		cleanToken()
-        #if canImport(WebKit) && canImport(UIKit)
+        #if canImport(WebKit) && (canImport(UIKit) || canImport(macOS))
         TeslaWebLoginViewController.removeCookies()
         #endif
 	}
@@ -184,9 +184,9 @@ extension TeslaSwift {
 	
 	- returns: An array of Vehicles.
 	*/
-    public func getVehicles() async throws -> [Vehicle] {
+    public func getVehicles() async throws -> [VehicleSummary] {
         _ = try await checkAuthentication()
-        let response: ArrayResponse<Vehicle> = try await request(.vehicles, body: nullBody)
+        let response: ArrayResponse<VehicleSummary> = try await request(.vehicles, body: nullBody)
         return response.response
 	}
     
@@ -218,9 +218,9 @@ extension TeslaSwift {
     
     - returns: A Vehicle.
     */
-    public func getVehicle(_ vehicleID: String) async throws -> Vehicle {
+    public func getVehicle(_ vehicleID: String) async throws -> VehicleSummary {
         _ = try await checkAuthentication()
-        let response: Response<Vehicle> = try await request(.vehicleSummary(vehicleID: vehicleID), body: nullBody)
+        let response: Response<VehicleSummary> = try await request(.vehicleSummary(vehicleID: vehicleID), body: nullBody)
         return response.response
     }
     
@@ -229,7 +229,7 @@ extension TeslaSwift {
     
     - returns: A Vehicle.
     */
-    public func getVehicle(_ vehicle: Vehicle) async throws -> Vehicle {
+    public func getVehicle(_ vehicle: VehicleSummary) async throws -> VehicleSummary {
         return try await getVehicle(vehicle.id!)
     }
 	
@@ -238,10 +238,10 @@ extension TeslaSwift {
      
      - returns: A completion handler with all the data
      */
-    public func getAllData(_ vehicle: Vehicle) async throws -> VehicleExtended {
+    public func getAllData(_ vehicle: VehicleSummary) async throws -> Vehicle {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
-        let response: Response<VehicleExtended> = try await request(.allStates(vehicleID: vehicleID), body: nullBody)
+        let response: Response<Vehicle> = try await request(.allStates(vehicleID: vehicleID), body: nullBody)
         return response.response
 	}
 	
@@ -250,7 +250,7 @@ extension TeslaSwift {
 	
 	- returns: The mobile access state.
 	*/
-    public func getVehicleMobileAccessState(_ vehicle: Vehicle) async throws -> Bool {
+    public func getVehicleMobileAccessState(_ vehicle: VehicleSummary) async throws -> Bool {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: BoolResponse = try await request(.mobileAccess(vehicleID: vehicleID), body: nullBody)
@@ -262,7 +262,7 @@ extension TeslaSwift {
 	
 	- returns: The charge state.
 	*/
-	public func getVehicleChargeState(_ vehicle: Vehicle) async throws -> ChargeState {
+	public func getVehicleChargeState(_ vehicle: VehicleSummary) async throws -> ChargeState {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<ChargeState> = try await request(.chargeState(vehicleID: vehicleID), body: nullBody)
@@ -274,7 +274,7 @@ extension TeslaSwift {
 	
 	- returns: The Climate state.
 	*/
-    public func getVehicleClimateState(_ vehicle: Vehicle) async throws -> ClimateState {
+    public func getVehicleClimateState(_ vehicle: VehicleSummary) async throws -> ClimateState {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<ClimateState> = try await request(.climateState(vehicleID: vehicleID), body: nullBody)
@@ -286,7 +286,7 @@ extension TeslaSwift {
 	
 	- returns: The drive state.
 	*/
-	public func getVehicleDriveState(_ vehicle: Vehicle) async throws -> DriveState {
+	public func getVehicleDriveState(_ vehicle: VehicleSummary) async throws -> DriveState {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<DriveState> = try await request(.driveState(vehicleID: vehicleID), body: nullBody)
@@ -298,7 +298,7 @@ extension TeslaSwift {
 	
 	- returns: The GUI Settings.
 	*/
-    public func getVehicleGuiSettings(_ vehicle: Vehicle) async throws -> GuiSettings {
+    public func getVehicleGuiSettings(_ vehicle: VehicleSummary) async throws -> GuiSettings {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<GuiSettings> = try await request(.guiSettings(vehicleID: vehicleID), body: nullBody)
@@ -310,7 +310,7 @@ extension TeslaSwift {
 	
 	- returns: The vehicle state.
 	*/
-    public func getVehicleState(_ vehicle: Vehicle) async throws -> VehicleState {
+    public func getVehicleState(_ vehicle: VehicleSummary) async throws -> VehicleState {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<VehicleState> = try await request(.vehicleState(vehicleID: vehicleID), body: nullBody)
@@ -322,7 +322,7 @@ extension TeslaSwift {
 	
 	- returns: The vehicle config
 	*/
-    public func getVehicleConfig(_ vehicle: Vehicle) async throws -> VehicleConfig {
+    public func getVehicleConfig(_ vehicle: VehicleSummary) async throws -> VehicleConfig {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<VehicleConfig> = try await request(.vehicleConfig(vehicleID: vehicleID), body: nullBody)
@@ -335,7 +335,7 @@ extension TeslaSwift {
      - parameter vehicle: the vehicle to get nearby charging sites from
      - returns: The nearby charging sites
      */
-    public func getNearbyChargingSites(_ vehicle: Vehicle) async throws -> NearbyChargingSites {
+    public func getNearbyChargingSites(_ vehicle: VehicleSummary) async throws -> NearbyChargingSites {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
         let response: Response<NearbyChargingSites> = try await request(.nearbyChargingSites(vehicleID: vehicleID), body: nullBody)
@@ -347,10 +347,10 @@ extension TeslaSwift {
 	
 	- returns: The current Vehicle
 	*/
-    public func wakeUp(_ vehicle: Vehicle) async throws -> Vehicle {
+    public func wakeUp(_ vehicle: VehicleSummary) async throws -> VehicleSummary {
         _ = try await checkAuthentication()
         let vehicleID = vehicle.id!
-        let response: Response<Vehicle> = try await request(.wakeUp(vehicleID: vehicleID), body: nullBody)
+        let response: Response<VehicleSummary> = try await request(.wakeUp(vehicleID: vehicleID), body: nullBody)
         return response.response
 	}
 	
@@ -361,7 +361,7 @@ extension TeslaSwift {
 	- parameter command: the command to send to the vehicle
 	- returns: A completion handler with the CommandResponse object containing the results of the command.
 	*/
-	public func sendCommandToVehicle(_ vehicle: Vehicle, command: VehicleCommand) async throws -> CommandResponse {
+	public func sendCommandToVehicle(_ vehicle: VehicleSummary, command: VehicleCommand) async throws -> CommandResponse {
         _ = try await checkAuthentication()
 
         switch command {

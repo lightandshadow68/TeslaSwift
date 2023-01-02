@@ -8,30 +8,30 @@
 
 import Foundation
 
-open class VehicleConfig: Codable {
-	open var canAcceptNavigationRequests: Bool?
-	open var canActuateTrunks: Bool?
-	open var carSpecialType: String?
-	open var carType: String?
-	open var chargePortType: String?
-	open var euVehicle: Bool?
-	open var exteriorColor: String?
-	open var hasAirSuspension: Bool?
-	open var hasLudicrousMode: Bool?
-	open var motorizedChargePort: Bool?
-	open var perfConfig: String?
-	open var plg: Bool?
-	open var rearSeatHeaters: Int?
-	open var rearSeatType: Int?
-	open var rhd: Bool?
-	open var roofColor: String? // "None" for panoramic roof
-	open var seatType: Int?
-	open var spoilerType: String?
-	open var sunRoofInstalled: Int?
-	open var thirdRowSeats: String?
-	open var timeStamp: Double?
-	open var trimBadging: String?
-	open var wheelType: String?
+public struct VehicleConfig: Codable, Sendable {
+	public var canAcceptNavigationRequests: Bool?
+	public var canActuateTrunks: Bool?
+	public var carSpecialType: String?
+	public var carType: String?
+	public var chargePortType: String?
+	public var euVehicle: Bool?
+	public var exteriorColor: String?
+	public var hasAirSuspension: Bool?
+	public var hasLudicrousMode: Bool?
+	public var motorizedChargePort: Bool?
+	public var perfConfig: String?
+	public var plg: Bool?
+	public var rearSeatHeaters: Int?
+	public var rearSeatType: Int?
+	public var rhd: Bool?
+	public var roofColor: String? // "None" for panoramic roof
+	public var seatType: Int?
+	public var spoilerType: String?
+	public var sunRoofInstalled: Int?
+	public var thirdRowSeats: String?
+	public var timeStamp: Double?
+	public var trimBadging: String?
+	public var wheelType: String?
 
 	enum CodingKeys: String, CodingKey {
 		case canAcceptNavigationRequests = "can_accept_navigation_requests"
@@ -59,7 +59,7 @@ open class VehicleConfig: Codable {
 		case wheelType			 = "wheel_type"
 	}
 	
-	required public init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		
 		canAcceptNavigationRequests = try? container.decode(Bool.self, forKey: .canAcceptNavigationRequests)

@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class RemoteSteeringWheelHeaterRequestOptions: Encodable {
-    open var on: Bool
+public struct RemoteSteeringWheelHeaterRequestOptions: Encodable, Sendable {
+    public var on: Bool
 
     public init(on: Bool) {
         self.on = on

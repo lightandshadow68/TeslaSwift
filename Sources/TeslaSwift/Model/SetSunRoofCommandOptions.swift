@@ -8,15 +8,15 @@
 
 import Foundation
 
-public enum RoofState: String, Codable {
+public enum RoofState: String, Codable, Sendable {
     case close
     case vent
 }
 
-open class SetSunRoofCommandOptions: Encodable {
+public struct SetSunRoofCommandOptions: Encodable, Sendable {
 
-	open var state: RoofState
-	open var percent: Int?
+	public var state: RoofState
+	public var percent: Int?
     public init(state: RoofState, percent: Int?) {
 		self.state = state
 		self.percent = percent

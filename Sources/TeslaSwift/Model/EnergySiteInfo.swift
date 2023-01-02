@@ -9,22 +9,22 @@
 import Foundation
 
 // MARK: - EnergySiteInfo
-open class EnergySiteInfo: Codable {
-    open var id: String
-    open var siteName: String
-    open var backupReservePercent: Double
-    open var defaultRealMode: String
-    open var installationDate: Date
-    open var version: String
-    open var batteryCount: Int
-    open var nameplatePower: Double
-    open var nameplateEnergy: Double
-    open var installationTimeZone: String
-    open var offGridVehicleChargingReservePercent: Double
+public struct EnergySiteInfo: Codable, Sendable {
+    public var id: String
+    public var siteName: String
+    public var backupReservePercent: Double
+    public var defaultRealMode: String
+    public var installationDate: Date
+    public var version: String
+    public var batteryCount: Int
+    public var nameplatePower: Double
+    public var nameplateEnergy: Double
+    public var installationTimeZone: String
+    public var offGridVehicleChargingReservePercent: Double
     
-    open var userSettings: UserSettings
-    open var touSettings: TOUSettings
-    open var components: Components
+    public var userSettings: UserSettings
+    public var touSettings: TOUSettings
+    public var components: Components
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -43,27 +43,27 @@ open class EnergySiteInfo: Codable {
     }
     
     // MARK: - Components
-    open class Components: Codable {
-        open var solar: Bool
-        open var solarType: String
-        open var battery: Bool
-        open var grid: Bool
-        open var backup: Bool
-        open var gateway: String
-        open var loadMeter: Bool
-        open var touCapable: Bool
-        open var stormModeCapable: Bool
-        open var flexEnergyRequestCapable: Bool
-        open var carChargingDataSupported: Bool
-        open var offGridVehicleChargingReserveSupported: Bool
-        open var vehicleChargingPerformanceViewEnabled: Bool
-        open var vehicleChargingSolarOffsetViewEnabled: Bool
-        open var batterySolarOffsetViewEnabled: Bool
-        open var setIslandingModeEnabled: Bool
-        open var backupTimeRemainingEnabled: Bool
-        open var batteryType: String
-        open var configurable: Bool
-        open var gridServicesEnabled: Bool
+    public struct Components: Codable, Sendable {
+        public var solar: Bool
+        public var solarType: String
+        public var battery: Bool
+        public var grid: Bool
+        public var backup: Bool
+        public var gateway: String
+        public var loadMeter: Bool
+        public var touCapable: Bool
+        public var stormModeCapable: Bool
+        public var flexEnergyRequestCapable: Bool
+        public var carChargingDataSupported: Bool
+        public var offGridVehicleChargingReserveSupported: Bool
+        public var vehicleChargingPerformanceViewEnabled: Bool
+        public var vehicleChargingSolarOffsetViewEnabled: Bool
+        public var batterySolarOffsetViewEnabled: Bool
+        public var setIslandingModeEnabled: Bool
+        public var backupTimeRemainingEnabled: Bool
+        public var batteryType: String
+        public var configurable: Bool
+        public var gridServicesEnabled: Bool
 
         enum CodingKeys: String, CodingKey {
             case solar
@@ -87,9 +87,9 @@ open class EnergySiteInfo: Codable {
     }
 
     // MARK: - TouSettings
-    open class TOUSettings: Codable {
-        open var optimizationStrategy: String
-        open var schedule: [Schedule]
+    public struct TOUSettings: Codable, Sendable {
+        public var optimizationStrategy: String
+        public var schedule: [Schedule]
 
         enum CodingKeys: String, CodingKey {
             case optimizationStrategy = "optimization_strategy"
@@ -98,11 +98,11 @@ open class EnergySiteInfo: Codable {
     }
 
     // MARK: - Schedule
-    open class Schedule: Codable {
-        open var target: String
-        open var weekDays: [Int]
-        open var startSeconds: Int
-        open var endSeconds: Int
+    public struct Schedule: Codable, Sendable {
+        public var target: String
+        public var weekDays: [Int]
+        public var startSeconds: Int
+        public var endSeconds: Int
 
         enum CodingKeys: String, CodingKey {
             case target
@@ -113,10 +113,10 @@ open class EnergySiteInfo: Codable {
     }
 
     // MARK: - UserSettings
-    open class UserSettings: Codable {
-        open var stormModeEnabled: Bool
-        open var syncGridAlertEnabled: Bool
-        open var breakerAlertEnabled: Bool
+    public struct UserSettings: Codable, Sendable {
+        public var stormModeEnabled: Bool
+        public var syncGridAlertEnabled: Bool
+        public var breakerAlertEnabled: Bool
 
         enum CodingKeys: String, CodingKey {
             case stormModeEnabled = "storm_mode_enabled"

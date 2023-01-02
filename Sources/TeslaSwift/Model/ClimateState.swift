@@ -8,56 +8,56 @@
 
 import Foundation
 
-open class ClimateState: Codable {
+public struct ClimateState: Codable, Sendable {
     /*
      * Fan speed 0-6 or nil
      */
-    open var fanStatus: Int?
+    public var fanStatus: Int?
 
-    open var isAutoConditioningOn: Bool?
-    open var isClimateOn: Bool?
-    open var climateKeeperMode: String?
+    public var isAutoConditioningOn: Bool?
+    public var isClimateOn: Bool?
+    public var climateKeeperMode: String?
 
-    open var batteryHeater: Bool?
-    open var batteryHeaterNoPower: Bool?
+    public var batteryHeater: Bool?
+    public var batteryHeaterNoPower: Bool?
 
-    open var isFrontDefrosterOn: Bool?
-    open var isRearDefrosterOn: Bool?
-    open var defrostMode: Int? //2 = on, 0 = off
+    public var isFrontDefrosterOn: Bool?
+    public var isRearDefrosterOn: Bool?
+    public var defrostMode: Int? //2 = on, 0 = off
 
     /*
      * Temp directions 0 at least 583...
      */
-    open var leftTemperatureDirection: Int?
-    open var rightTemperatureDirection: Int?
+    public var leftTemperatureDirection: Int?
+    public var rightTemperatureDirection: Int?
 
-    open var driverTemperatureSetting: Temperature?
-    open var passengerTemperatureSetting: Temperature?
+    public var driverTemperatureSetting: Temperature?
+    public var passengerTemperatureSetting: Temperature?
 
-    open var maxAvailableTemperature: Temperature?
-    open var minAvailableTemperature: Temperature?
+    public var maxAvailableTemperature: Temperature?
+    public var minAvailableTemperature: Temperature?
 
-    open var remoteHeaterControlEnabled: Bool?
+    public var remoteHeaterControlEnabled: Bool?
 
-    open var seatHeaterLeft: Int?
-    open var seatHeaterRearCenter: Int?
-    open var seatHeaterRearLeft: Int?
-    open var seatHeaterRearLeftBack: Int?
-    open var seatHeaterRearRight: Int?
-    open var seatHeaterRearRightBack: Int?
-    open var seatHeaterRight: Int?
+    public var seatHeaterLeft: Int?
+    public var seatHeaterRearCenter: Int?
+    public var seatHeaterRearLeft: Int?
+    public var seatHeaterRearLeftBack: Int?
+    public var seatHeaterRearRight: Int?
+    public var seatHeaterRearRightBack: Int?
+    public var seatHeaterRight: Int?
 
-    open var sideMirrorHeaters: Bool?
-    open var steeringWheelHeater: Bool?
-    open var wiperBladeHeater: Bool?
+    public var sideMirrorHeaters: Bool?
+    public var steeringWheelHeater: Bool?
+    public var wiperBladeHeater: Bool?
 
-    open var insideTemperature: Temperature?
-    open var outsideTemperature: Temperature?
+    public var insideTemperature: Temperature?
+    public var outsideTemperature: Temperature?
 
-    open var isPreconditioning: Bool?
-    open var smartPreconditioning: Bool?
+    public var isPreconditioning: Bool?
+    public var smartPreconditioning: Bool?
 
-    open var timeStamp: Double?
+    public var timeStamp: Double?
 
     enum CodingKeys: String, CodingKey {
         case batteryHeater   = "battery_heater"
@@ -107,7 +107,7 @@ open class ClimateState: Codable {
         case timeStamp                    = "timestamp"
     }
 
-    required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         batteryHeater = try? container.decode(Bool.self, forKey: .batteryHeater)
@@ -210,7 +210,7 @@ open class ClimateState: Codable {
     }
 }
 
-public struct Temperature: Codable {
+public struct Temperature: Codable, Sendable {
     public var value: Measurement<UnitTemperature>
 
     public init(celsius: Double?) {
@@ -240,3 +240,7 @@ public struct Temperature: Codable {
     public var celsius: Double { return value.converted(to: .celsius).value }
     public var fahrenheit: Double { return value.converted(to: .fahrenheit).value }
 }
+
+extension Measurement: Sendable {}
+
+extension UnitTemperature: @unchecked Sendable {}

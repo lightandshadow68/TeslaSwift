@@ -9,10 +9,10 @@
 import Foundation
 
 // MARK: - EnergySiteHistory
-open class EnergySiteHistory: Codable {
-    open var serialNumber: String
-    open var period: Period
-    open var timeSeries: [TimeSeries]
+public struct EnergySiteHistory: Codable, Sendable {
+    public var serialNumber: String
+    public var period: Period
+    public var timeSeries: [TimeSeries]
 
     enum CodingKeys: String, CodingKey {
         case serialNumber = "serial_number"
@@ -20,29 +20,29 @@ open class EnergySiteHistory: Codable {
         case timeSeries = "time_series"
     }
     
-    public enum Period: String, Codable {
+    public enum Period: String, Codable, Sendable {
         case day, week, month, year
     }
     
     // MARK: - TimeSeries
-    open class TimeSeries: Codable {
-        open var timestamp: Date
-        open var solarEnergyExported: Double
-        open var generatorEnergyExported: Double
-        open var gridEnergyImported: Double
-        open var gridServicesEnergyImported: Double
-        open var gridServicesEnergyExported: Double
-        open var gridEnergyExportedFromSolar: Double
-        open var gridEnergyExportedFromGenerator: Double
-        open var gridEnergyExportedFromBattery: Double
-        open var batteryEnergyExported: Double
-        open var batteryEnergyImportedFromGrid: Double
-        open var batteryEnergyImportedFromSolar: Double
-        open var batteryEnergyImportedFromGenerator: Double
-        open var consumerEnergyImportedFromGrid: Double
-        open var consumerEnergyImportedFromSolar: Double
-        open var consumerEnergyImportedFromBattery: Double
-        open var consumerEnergyImportedFromGenerator: Double
+    public struct TimeSeries: Codable, Sendable {
+        public var timestamp: Date
+        public var solarEnergyExported: Double
+        public var generatorEnergyExported: Double
+        public var gridEnergyImported: Double
+        public var gridServicesEnergyImported: Double
+        public var gridServicesEnergyExported: Double
+        public var gridEnergyExportedFromSolar: Double
+        public var gridEnergyExportedFromGenerator: Double
+        public var gridEnergyExportedFromBattery: Double
+        public var batteryEnergyExported: Double
+        public var batteryEnergyImportedFromGrid: Double
+        public var batteryEnergyImportedFromSolar: Double
+        public var batteryEnergyImportedFromGenerator: Double
+        public var consumerEnergyImportedFromGrid: Double
+        public var consumerEnergyImportedFromSolar: Double
+        public var consumerEnergyImportedFromBattery: Double
+        public var consumerEnergyImportedFromGenerator: Double
 
         enum CodingKeys: String, CodingKey {
             case timestamp

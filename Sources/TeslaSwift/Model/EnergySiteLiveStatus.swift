@@ -9,22 +9,22 @@
 import Foundation
 
 // MARK: - EnergySiteLiveStatus
-open class EnergySiteLiveStatus: Codable {
-    open var solarPower: Double
-    open var energyLeft: Double
-    open var totalPackEnergy: Double
-    open var percentageCharged: Double
-    open var backupCapable: Bool
-    open var batteryPower: Double
-    open var loadPower: Double
-    open var gridStatus: String
-    open var gridServicesActive: Bool
-    open var gridPower: Double
-    open var gridServicesPower: Double
-    open var generatorPower: Double
-    open var islandStatus: String
-    open var stormModeActive: Bool
-    open var timestamp: Date
+public struct EnergySiteLiveStatus: Codable, Sendable {
+    public var solarPower: Double
+    public var energyLeft: Double
+    public var totalPackEnergy: Double
+    public var percentageCharged: Double
+    public var backupCapable: Bool
+    public var batteryPower: Double
+    public var loadPower: Double
+    public var gridStatus: String
+    public var gridServicesActive: Bool
+    public var gridPower: Double
+    public var gridServicesPower: Double
+    public var generatorPower: Double
+    public var islandStatus: String
+    public var stormModeActive: Bool
+    public var timestamp: Date
 
     enum CodingKeys: String, CodingKey {
         case solarPower = "solar_power"

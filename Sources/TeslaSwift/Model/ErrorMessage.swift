@@ -8,10 +8,10 @@
 
 import Foundation
 
-open class ErrorMessage: Codable {
+public struct ErrorMessage: Codable, Sendable {
 	
-	open var error: String?
-	open var description: String?
+	public var error: String?
+	public var description: String?
 	
 	enum CodingKeys: String, CodingKey {
 		case error		 = "error"

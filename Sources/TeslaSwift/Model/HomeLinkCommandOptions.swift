@@ -9,10 +9,10 @@
 import Foundation
 import CoreLocation
 
-open class HomeLinkCommandOptions: Encodable {
+public struct HomeLinkCommandOptions: Encodable, Sendable {
     
-    open var latitude: CLLocationDegrees
-    open var longitude: CLLocationDegrees
+    public var latitude: CLLocationDegrees
+    public var longitude: CLLocationDegrees
     
     public init(coordinates: CLLocation) {
         self.latitude = coordinates.coordinate.latitude

@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class SetSpeedLimitOptions: Codable {
+public struct SetSpeedLimitOptions: Codable, Sendable {
 	
-	open var limit: Measurement<UnitSpeed>
+	public var limit: Measurement<UnitSpeed>
 	
 	enum CodingKeys: String, CodingKey {
 		case limit = "limit_mph"
@@ -20,7 +20,7 @@ open class SetSpeedLimitOptions: Codable {
 		self.limit = limit.converted(to: UnitSpeed.milesPerHour)
 	}
 	
-	required public init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		
@@ -40,9 +40,9 @@ open class SetSpeedLimitOptions: Codable {
 	
 }
 
-open class SpeedLimitPinOptions: Codable {
+public struct SpeedLimitPinOptions: Codable, Sendable {
 	
-	open var pin: String // 4 digits pin
+	public var pin: String // 4 digits pin
 	
 	public init(pin: String) {
 		self.pin = pin

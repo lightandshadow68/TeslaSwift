@@ -8,10 +8,10 @@
 
 import Foundation
 
-open class ScheduledChargingCommandOptions: Encodable {
+public struct ScheduledChargingCommandOptions: Encodable, Sendable {
     
-    open var enable: Bool
-    open var time: Int
+    public var enable: Bool
+    public var time: Int
     
     public init(enable: Bool, time: Int) {
         self.enable = enable

@@ -8,127 +8,127 @@
 
 import Foundation
 
-open class ChargeState: Codable {
-	public enum ChargingState: String, Codable {
+public struct ChargeState: Codable, Sendable {
+	public enum ChargingState: String, Codable, Sendable {
 		case complete = "Complete"
 		case charging = "Charging"
 		case disconnected = "Disconnected"
 		case stopped = "Stopped"
 	}
     
-    public enum ScheduledChargingTimes: String, Codable {
+    public enum ScheduledChargingTimes: String, Codable, Sendable {
         case allWeek = "all_week"
         case weekdays
     }
 	
-	open var batteryHeaterOn: Bool?
+	public var batteryHeaterOn: Bool?
 	/**
 	Percentage of the battery
 	*/
-	open var batteryLevel: Int?
+	public var batteryLevel: Int?
 	/**
 	Rated Miles
 	*/
-	open var ratedBatteryRange: Distance?
-	open var chargeCurrentRequest: Int?
-	open var chargeCurrentRequestMax: Int?
-	open var chargeEnableRequest: Bool?
-	open var chargeEnergyAdded: Double?
+	public var ratedBatteryRange: Distance?
+	public var chargeCurrentRequest: Int?
+	public var chargeCurrentRequestMax: Int?
+	public var chargeEnableRequest: Bool?
+	public var chargeEnergyAdded: Double?
 	
-	open var chargeLimitSOC: Int?
-	open var chargeLimitSOCMax: Int?
-	open var chargeLimitSOCMin: Int?
-	open var chargeLimitSOCStandard: Int?
+	public var chargeLimitSOC: Int?
+	public var chargeLimitSOCMax: Int?
+	public var chargeLimitSOCMin: Int?
+	public var chargeLimitSOCStandard: Int?
 
-	open var chargeDistanceAddedIdeal: Distance?
-	open var chargeDistanceAddedRated: Distance?
+	public var chargeDistanceAddedIdeal: Distance?
+	public var chargeDistanceAddedRated: Distance?
 	
 	/**
-	Vehicle charging port is open?
+	Vehicle charging port is public?
 	*/
-	open var chargePortDoorOpen: Bool?
-	open var chargePortLatch: String?
-	open var chargePortColdWeatherMode: Bool?
+	public var chargePortDoorpublic: Bool?
+	public var chargePortLatch: String?
+	public var chargePortColdWeatherMode: Bool?
 	
 	/**
 	miles/hour while charging or 0 if not charging
 	*/
-	open var chargeRate: Speed?
+	public var chargeRate: Speed?
 	/**
 	Charge to max rate or standard
 	*/
-	open var chargeToMaxRange: Bool?
+	public var chargeToMaxRange: Bool?
 	
 	/**
 	Current actually being drawn
 	*/
-	open var chargerActualCurrent: Int?
-	open var chargerPhases: Int?
+	public var chargerActualCurrent: Int?
+	public var chargerPhases: Int?
 	/**
 	Max current allowed by charger and adapter
 	*/
-	open var chargerPilotCurrent: Int?
+	public var chargerPilotCurrent: Int?
 	/**
 	KW of charger
 	*/
-	open var chargerPower: Int?
+	public var chargerPower: Int?
 	/**
 	Voltage. Only has value while charging
 	*/
-	open var chargerVoltage: Int?
+	public var chargerVoltage: Int?
 	
 	/**
 	Current state of the charging
 	*/
-	open var chargingState: ChargingState?
+	public var chargingState: ChargingState?
 	
-	open var connChargeCable: String?
+	public var connChargeCable: String?
 	
 	/**
 	Range estimated from recent driving
 	*/
-	open var estimatedBatteryRange: Distance?
+	public var estimatedBatteryRange: Distance?
 	
-	open var euVehicle: Bool?
+	public var euVehicle: Bool?
 	
-	open var fastChargerBrand: String?
+	public var fastChargerBrand: String?
 	/**
 	Vehicle connected to supercharger?
 	*/
-	open var fastChargerPresent: Bool?
-	open var fastChargerType: String?
+	public var fastChargerPresent: Bool?
+	public var fastChargerType: String?
 	
 	/**
 	Ideal Miles
 	*/
-	open var idealBatteryRange: Distance?
-	open var managedChargingActive: Bool?
-	open var managedChargingStartTime: Date?
-	open var managedChargingUserCanceled: Bool?
+	public var idealBatteryRange: Distance?
+	public var managedChargingActive: Bool?
+	public var managedChargingStartTime: Date?
+	public var managedChargingUserCanceled: Bool?
 	
-	open var maxRangeChargeCounter: Int?
+	public var maxRangeChargeCounter: Int?
 	
-	open var notEnoughPowerToHeat: Bool?
+	public var notEnoughPowerToHeat: Bool?
 	
-	open var scheduledChargingPending: Bool?
-	open var scheduledChargingStartTime: TimeInterval?
-    open var scheduledDepartureTime: TimeInterval?
-    open var offPeakChargingEnabled: Bool?
-    open var offPeakChargingTimes: ScheduledChargingTimes?
-    open var offPeakHoursEndTime: Int?
-    open var preconditioningEnabled: Bool?
-    open var preconditioningTimes: ScheduledChargingTimes?
+	public var scheduledChargingPending: Bool?
+	public var scheduledChargingStartTime: TimeInterval?
+    public var scheduledDepartureTime: TimeInterval?
+    public var offPeakChargingEnabled: Bool?
+    public var offPeakChargingTimes: ScheduledChargingTimes?
+    public var offPeakHoursEndTime: Int?
+    public var preconditioningEnabled: Bool?
+    public var preconditioningTimes: ScheduledChargingTimes?
 	
 	/**
 	Only valid while charging
 	*/
-	open var timeToFullCharge: Double?
-	open var timeStamp: Double?
+	public var timeToFullCharge: Double?
+	public var timeStamp: Double?
 	
-	open var tripCharging: Bool?
+	public var tripCharging: Bool?
 	
-	open var usableBatteryLevel: Int?
-	open var userChargeEnableRequest: Bool?
+	public var usableBatteryLevel: Int?
+	public var userChargeEnableRequest: Bool?
 	
 	enum CodingKeys: String, CodingKey {
 		case batteryHeaterOn				 = "battery_heater_on"
@@ -147,7 +147,7 @@ open class ChargeState: Codable {
 		case chargeDistanceAddedIdeal    = "charge_miles_added_ideal"
 		case chargeDistanceAddedRated    = "charge_miles_added_rated"
 		
-		case chargePortDoorOpen           = "charge_port_door_open"
+		case chargePortDoorpublic           = "charge_port_door_public"
 		case chargePortLatch				 = "charge_port_latch"
 		case chargePortColdWeatherMode	= "charge_port_cold_weather_mode"
 		
@@ -202,7 +202,7 @@ open class ChargeState: Codable {
 		case userChargeEnableRequest		 = "user_charge_enable_request"
 	}
 	
-	required public init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		batteryHeaterOn = try? container.decode(Bool.self, forKey: .batteryHeaterOn)
 		
@@ -222,7 +222,7 @@ open class ChargeState: Codable {
 		chargeDistanceAddedIdeal = try? container.decode(Distance.self, forKey: .chargeDistanceAddedIdeal)
 		chargeDistanceAddedRated = try? container.decode(Distance.self, forKey: .chargeDistanceAddedRated)
 
-		chargePortDoorOpen = try? container.decode(Bool.self, forKey: .chargePortDoorOpen)
+		chargePortDoorpublic = try? container.decode(Bool.self, forKey: .chargePortDoorpublic)
 		chargePortLatch = try? container.decode(String.self, forKey: .chargePortLatch)
 		chargePortColdWeatherMode = try? container.decode(Bool.self, forKey: .chargePortColdWeatherMode)
 
@@ -300,7 +300,7 @@ open class ChargeState: Codable {
 		try container.encodeIfPresent(chargeDistanceAddedIdeal, forKey: .chargeDistanceAddedIdeal)
 		try container.encodeIfPresent(chargeDistanceAddedRated, forKey: .chargeDistanceAddedRated)
 		
-		try container.encodeIfPresent(chargePortDoorOpen, forKey: .chargePortDoorOpen)
+		try container.encodeIfPresent(chargePortDoorpublic, forKey: .chargePortDoorpublic)
 		try container.encodeIfPresent(chargePortLatch, forKey: .chargePortLatch)
 		try container.encodeIfPresent(chargePortColdWeatherMode, forKey: .chargePortColdWeatherMode)
 

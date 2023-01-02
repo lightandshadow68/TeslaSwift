@@ -9,26 +9,26 @@
 import Foundation
 
 // MARK: - EnergySite
-open class EnergySite: Codable {
+public struct EnergySite: Codable, Sendable {
     
     // Unique to EnergySite
-    open var id: String?
-    open var energySiteID: Decimal
-    open var assetSiteID: String?
-    open var components: Components?
+    public var id: String?
+    public var energySiteID: Decimal
+    public var assetSiteID: String?
+    public var components: Components?
     
     // Also available in EnergySiteStatus
-    open var resourceType: String
-    open var siteName: String
-    open var gatewayID: String
-    open var energyLeft: Double
-    open var totalPackEnergy: Double
-    open var percentageCharged: Double
-    open var batteryType: String
-    open var backupCapable: Bool
-    open var batteryPower: Double
-    open var syncGridAlertEnabled: Bool
-    open var breakerAlertEnabled: Bool
+    public var resourceType: String
+    public var siteName: String
+    public var gatewayID: String
+    public var energyLeft: Double
+    public var totalPackEnergy: Double
+    public var percentageCharged: Double
+    public var batteryType: String
+    public var backupCapable: Bool
+    public var batteryPower: Double
+    public var syncGridAlertEnabled: Bool
+    public var breakerAlertEnabled: Bool
 
     enum CodingKeys: String, CodingKey {
         case energySiteID = "energy_site_id"
@@ -49,14 +49,14 @@ open class EnergySite: Codable {
     }
 
     // MARK: - Components
-    open class Components: Codable {
-        open var battery: Bool
-        open var batteryType: String
-        open var solar: Bool
-        open var solarType: String
-        open var grid: Bool
-        open var loadMeter: Bool
-        open var marketType: String
+    public struct Components: Codable, Sendable {
+        public var battery: Bool
+        public var batteryType: String
+        public var solar: Bool
+        public var solarType: String
+        public var grid: Bool
+        public var loadMeter: Bool
+        public var marketType: String
 
         enum CodingKeys: String, CodingKey {
             case battery

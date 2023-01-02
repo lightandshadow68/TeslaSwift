@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class CommandResponse: Decodable {
+public struct CommandResponse: Decodable, Sendable {
 	
 	private struct Response: Decodable {
 		var result: Bool?
@@ -16,8 +16,8 @@ open class CommandResponse: Decodable {
 	}
 	private var response: Response
 	
-	open var result: Bool? { return response.result }
-	open var reason: String? { return response.reason }
+	public var result: Bool? { return response.result }
+	public var reason: String? { return response.reason }
 	
 	init() {
 		response = Response()
@@ -27,7 +27,7 @@ open class CommandResponse: Decodable {
 		case response
 	}
 	
-	required public init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		response = (try? container.decode(Response.self, forKey: .response)) ?? Response()

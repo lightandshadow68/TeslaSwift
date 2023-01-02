@@ -9,10 +9,10 @@
 import Foundation
 
 // MARK: - BatteryPowerHistory
-open class BatteryPowerHistory: Codable {
-    open var serialNumber: String
-    open var timeSeries: [TimeSeries]
-    open var selfConsumptionData: [SelfConsumptionDatum]
+public struct BatteryPowerHistory: Codable, Sendable {
+    public var serialNumber: String
+    public var timeSeries: [TimeSeries]
+    public var selfConsumptionData: [SelfConsumptionDatum]
 
     enum CodingKeys: String, CodingKey {
         case serialNumber = "serial_number"
@@ -21,20 +21,20 @@ open class BatteryPowerHistory: Codable {
     }
     
     // MARK: - SelfConsumptionDatum
-    open class SelfConsumptionDatum: Codable {
-        open var timestamp: Date
-        open var solar: Double
-        open var battery: Double
+    public struct SelfConsumptionDatum: Codable, Sendable {
+        public var timestamp: Date
+        public var solar: Double
+        public var battery: Double
     }
 
     // MARK: - TimeSeries
-    open class TimeSeries: Codable {
-        open var timestamp: Date
-        open var solarPower: Double
-        open var batteryPower: Double
-        open var gridPower: Double
-        open var gridServicesPower: Double
-        open var generatorPower: Double
+    public struct TimeSeries: Codable, Sendable {
+        public var timestamp: Date
+        public var solarPower: Double
+        public var batteryPower: Double
+        public var gridPower: Double
+        public var gridServicesPower: Double
+        public var generatorPower: Double
 
         enum CodingKeys: String, CodingKey {
             case timestamp

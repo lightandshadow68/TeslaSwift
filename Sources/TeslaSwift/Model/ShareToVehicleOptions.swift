@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class ShareToVehicleOptions: Codable {
+public struct ShareToVehicleOptions: Codable, Sendable {
 	
 	public let type: String
     public let value: ShareToVehicleValue
@@ -21,7 +21,7 @@ open class ShareToVehicleOptions: Codable {
         self.timestamp_ms = "12345"
     }
 	
-    public class ShareToVehicleValue: Codable {
+    public struct ShareToVehicleValue: Codable, Sendable {
 		public let intentAction: String
         public let intentType: String
         public let intentText: String

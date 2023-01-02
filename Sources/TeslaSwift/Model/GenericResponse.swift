@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class Response<T: Decodable>: Decodable {
-	open var response: T
+public struct Response<T: Decodable>: Decodable {
+	public var response: T
 	
 	public init(response: T) {
 		self.response = response
@@ -22,8 +22,8 @@ open class Response<T: Decodable>: Decodable {
 	}
 }
 
-open class ArrayResponse<T: Decodable>: Decodable {
-	open var response: [T] = []
+public class ArrayResponse<T: Decodable>: Decodable {
+	public var response: [T] = []
 	
 	// MARK: Codable protocol
 	
@@ -32,8 +32,8 @@ open class ArrayResponse<T: Decodable>: Decodable {
 	}
 }
 
-open class BoolResponse: Decodable {
-	open var response: Bool
+public class BoolResponse: Decodable {
+	public var response: Bool
 	
 	public init(response: Bool) {
 		self.response = response

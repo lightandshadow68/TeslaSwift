@@ -9,16 +9,16 @@
 import Foundation
 import CoreLocation
 
-public enum WindowState: String, Codable {
+public enum WindowState: String, Codable, Sendable {
     case close
     case vent
 }
 
-open class WindowControlCommandOptions: Encodable {
+public struct WindowControlCommandOptions: Encodable, Sendable {
     
-    open var latitude: CLLocationDegrees = 0
-    open var longitude: CLLocationDegrees = 0
-    open var command: WindowState
+    public var latitude: CLLocationDegrees = 0
+    public var longitude: CLLocationDegrees = 0
+    public var command: WindowState
     
     public init(command: WindowState) {
         self.command = command

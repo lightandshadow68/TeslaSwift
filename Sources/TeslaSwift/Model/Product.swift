@@ -8,18 +8,18 @@
 
 import Foundation
 
-open class Product: Codable {
-    open var vehicle: Vehicle?
-    open var energySite: EnergySite?
+public struct Product: Codable, Sendable {
+    public var vehicle: VehicleSummary?
+    public var energySite: EnergySite?
     
-    open var isValidProduct: Bool { vehicle != nil || energySite != nil}
+    public var isValidProduct: Bool { vehicle != nil || energySite != nil}
     
-    required public init(from decoder: Decoder) throws {
-        let vehicleContainer = try decoder.container(keyedBy: Vehicle.CodingKeys.self)
+    public init(from decoder: Decoder) throws {
+        let vehicleContainer = try decoder.container(keyedBy: VehicleSummary.CodingKeys.self)
         let energySiteContainer = try decoder.container(keyedBy: EnergySite.CodingKeys.self)
         
-        if vehicleContainer.contains(Vehicle.CodingKeys.vehicleID) {
-            self.vehicle = try Vehicle(from: decoder)
+        if vehicleContainer.contains(VehicleSummary.CodingKeys.vehicleID) {
+            self.vehicle = try VehicleSummary(from: decoder)
             self.energySite = nil
         } else if energySiteContainer.contains(EnergySite.CodingKeys.energySiteID) {
             self.vehicle = nil

@@ -9,13 +9,13 @@
 import Foundation
 
 // MARK: - BatteryStatus
-open class BatteryStatus: Codable {
-    open var siteName: String
-    open var id: String
-    open var energyLeft: Double
-    open var totalPackEnergy: Double
-    open var percentageCharged: Double
-    open var batteryPower: Double
+public struct BatteryStatus: Codable, Sendable {
+    public var siteName: String
+    public var id: String
+    public var energyLeft: Double
+    public var totalPackEnergy: Double
+    public var percentageCharged: Double
+    public var batteryPower: Double
 
     enum CodingKeys: String, CodingKey {
         case siteName = "site_name"

@@ -9,31 +9,31 @@
 import Foundation
 import CoreLocation
 
-open class DriveState: Codable {
-    public enum ShiftState: String, Codable {
+public struct DriveState: Codable, Sendable {
+    public enum ShiftState: String, Codable, Sendable {
         case drive = "D"
         case park = "P"
         case reverse = "R"
         case neutral = "N"
     }
 	
-	open var shiftState: ShiftState?
+	public var shiftState: ShiftState?
 	
-	open var speed: CLLocationSpeed?
-	open var latitude: CLLocationDegrees?
-	open var longitude: CLLocationDegrees?
-	open var heading: CLLocationDirection?
-	open var nativeLatitude: CLLocationDegrees?
-	open var nativeLongitude: CLLocationDegrees?
+	public var speed: CLLocationSpeed?
+	public var latitude: CLLocationDegrees?
+	public var longitude: CLLocationDegrees?
+	public var heading: CLLocationDirection?
+	public var nativeLatitude: CLLocationDegrees?
+	public var nativeLongitude: CLLocationDegrees?
 	private var nativeLocationSupportedBool: Int?
-	open var nativeLocationSupported: Bool { return nativeLocationSupportedBool == 1 }
-	open var nativeType: String?
+	public var nativeLocationSupported: Bool { return nativeLocationSupportedBool == 1 }
+	public var nativeType: String?
 	
-	open var date: Date?
-	open var timeStamp: Double?
-	open var power: Int?
+	public var date: Date?
+	public var timeStamp: Double?
+	public var power: Int?
 	
-	open var position: CLLocation? {
+	public var position: CLLocation? {
 		if let latitude = latitude,
 			let longitude = longitude,
 			let heading = heading,
@@ -64,7 +64,7 @@ open class DriveState: Codable {
 		case nativeType = "native_type"
 	}
 
-	required public init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		
         shiftState = try? container.decode(ShiftState.self, forKey: .shiftState)

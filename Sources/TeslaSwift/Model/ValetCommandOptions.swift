@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class ValetCommandOptions: Codable {
-	open var on: Bool = false
-	open var password: String?
+public struct ValetCommandOptions: Codable, Sendable {
+	public var on: Bool = false
+	public var password: String?
 	
     public init(valetActivated: Bool, pin: String?) {
 		on = valetActivated

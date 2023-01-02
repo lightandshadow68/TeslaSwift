@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class ChargeLimitPercentageCommandOptions: Encodable {
-	open var percent: Int?
+public struct ChargeLimitPercentageCommandOptions: Encodable, Sendable {
+	public var percent: Int?
 	
     public init(limit: Int) {
 		percent = limit

@@ -9,18 +9,18 @@
 import Foundation
 
 // MARK: - EnergySiteStatus
-open class EnergySiteStatus: Codable {
-    open var resourceType: String
-    open var siteName: String
-    open var gatewayID: String
-    open var energyLeft: Double
-    open var totalPackEnergy: Double
-    open var percentageCharged: Double
-    open var batteryType: String
-    open var backupCapable: Bool
-    open var batteryPower: Double
-    open var syncGridAlertEnabled: Bool
-    open var breakerAlertEnabled: Bool
+public struct EnergySiteStatus: Codable, Sendable {
+    public var resourceType: String
+    public var siteName: String
+    public var gatewayID: String
+    public var energyLeft: Double
+    public var totalPackEnergy: Double
+    public var percentageCharged: Double
+    public var batteryType: String
+    public var backupCapable: Bool
+    public var batteryPower: Double
+    public var syncGridAlertEnabled: Bool
+    public var breakerAlertEnabled: Bool
 
     enum CodingKeys: String, CodingKey {
         case resourceType = "resource_type"
