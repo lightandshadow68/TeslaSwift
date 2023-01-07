@@ -26,6 +26,9 @@ let ErrorInfo = "ErrorInfo"
 private var nullBody = ""
 
 open class TeslaSwift {
+    
+    static public let shared = TeslaSwift()
+    
     open var debuggingEnabled = false
 
     open fileprivate(set) var token: AuthToken?

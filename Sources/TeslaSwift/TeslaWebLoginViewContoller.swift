@@ -13,26 +13,21 @@ import WebKit
 import AppKit
 public class TeslaWebLoginViewController: NSViewController {
   
+    var webView = WKWebView()
     private var continuation: CheckedContinuation<URL, Error>?
-    private var url: URL
+    
     required init?(coder: NSCoder) {
         fatalError("not supported")
     }
     
     init(url: URL) {
-        self.url = url
         super.init(nibName: nil, bundle: nil)
+        webView.navigationDelegate = self
+        webView.load(URLRequest(url: url))
     }
     
     override public func loadView() {
-        view = WKWebView()
-    }
-    
-    override public func viewDidAppear() {
-        if let webView = view as? WKWebView {
-            webView.navigationDelegate = self
-            webView.load(URLRequest(url: url))
-        }
+        view = webView
     }
     
     func result() async throws -> URL {
