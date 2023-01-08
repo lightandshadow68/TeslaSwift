@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct GuiSettings: Codable, Sendable {
+public struct GuiSettings: Equatable, Codable, Sendable {
 	public var distanceUnits: String?
 	public var temperatureUnits: String?
 	public var chargeRateUnits: String?

@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct VehicleState: Codable, Sendable {
+public struct VehicleState: Equatable, Codable, Sendable {
 	
-	public struct MediaState: Codable, Sendable {
+	public struct MediaState: Equatable, Codable, Sendable {
 		public var remoteControlEnabled: Bool?
 		
 		enum CodingKeys: String, CodingKey {
@@ -18,7 +18,7 @@ public struct VehicleState: Codable, Sendable {
 		}
 	}
 	
-    public struct SpeedLimitMode: Codable, Sendable {
+    public struct SpeedLimitMode: Equatable, Codable, Sendable {
 		public var active: Bool?
 		public var currentLimit: Measurement<UnitSpeed>?
 		public var maxLimit: Measurement<UnitSpeed>?

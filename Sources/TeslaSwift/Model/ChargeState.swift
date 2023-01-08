@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ChargeState: Codable, Sendable {
+public struct ChargeState: Codable, Equatable, Sendable {
 	public enum ChargingState: String, Codable, Sendable {
 		case complete = "Complete"
 		case charging = "Charging"
@@ -16,7 +16,7 @@ public struct ChargeState: Codable, Sendable {
 		case stopped = "Stopped"
 	}
     
-    public enum ScheduledChargingTimes: String, Codable, Sendable {
+    public enum ScheduledChargingTimes: String, Equatable, Codable, Sendable {
         case allWeek = "all_week"
         case weekdays
     }

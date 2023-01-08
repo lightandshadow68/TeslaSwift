@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-public struct DriveState: Codable, Sendable {
+public struct DriveState: Equatable, Codable, Sendable {
     public enum ShiftState: String, Codable, Sendable {
         case drive = "D"
         case park = "P"

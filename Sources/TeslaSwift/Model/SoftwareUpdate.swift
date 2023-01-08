@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct SoftwareUpdate: Codable, Sendable {
+public struct SoftwareUpdate: Equatable, Codable, Sendable {
 	
     public var status: String?
     public var expectedDuration: Int?

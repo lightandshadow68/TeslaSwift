@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Speed: Codable, Sendable {
+public struct Speed: Codable, Equatable, Sendable {
     public var value: Measurement<UnitSpeed>
     
     public init(milesPerHour: Double?) {
@@ -39,4 +39,4 @@ public struct Speed: Codable, Sendable {
     public var kilometersPerHour: Double { return value.converted(to: .kilometersPerHour).value }
 }
 
-extension UnitSpeed: @unchecked Sendable {}
+extension UnitSpeed: @unchecked Sendable, Equatable {}

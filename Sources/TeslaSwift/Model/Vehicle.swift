@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Vehicle: Codable, Sendable {
+public struct Vehicle: Equatable, Codable, Sendable, Identifiable {
     public var backseatToken: String?
     public var backseatTokenUpdatedAt: Date?
     public var calendarEnabled: Bool?

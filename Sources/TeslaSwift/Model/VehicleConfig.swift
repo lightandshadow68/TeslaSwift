@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct VehicleConfig: Codable, Sendable {
+public struct VehicleConfig: Equatable, Codable, Sendable {
 	public var canAcceptNavigationRequests: Bool?
 	public var canActuateTrunks: Bool?
 	public var carSpecialType: String?

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ClimateState: Codable, Sendable {
+public struct ClimateState: Equatable, Codable, Sendable {
     /*
      * Fan speed 0-6 or nil
      */
@@ -210,7 +210,7 @@ public struct ClimateState: Codable, Sendable {
     }
 }
 
-public struct Temperature: Codable, Sendable {
+public struct Temperature: Equatable, Codable, Sendable {
     public var value: Measurement<UnitTemperature>
 
     public init(celsius: Double?) {
