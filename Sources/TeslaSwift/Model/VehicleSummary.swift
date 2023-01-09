@@ -27,7 +27,6 @@ public struct VehicleSummary: Equatable, Identifiable, Codable, Sendable {
 	}
 	public var idInt: Int64?
 	public var idS: String?
-    public var chargeState: ChargeState?
 	public var inService: Bool?
 	public var optionCodes: String?
 	public var state: String?
@@ -46,7 +45,6 @@ public struct VehicleSummary: Equatable, Identifiable, Codable, Sendable {
 		case displayName		        = "display_name"
 		case idInt						= "id"
 		case idS						= "id_s"
-        case chargeState                = "charge_state"
         case inService				    = "in_service"
 		case optionCodes				= "option_codes"
 		case state					    = "state"
@@ -54,7 +52,7 @@ public struct VehicleSummary: Equatable, Identifiable, Codable, Sendable {
 		case vehicleID				    = "vehicle_id"
 		case vin						= "vin"
 
-	}
+    }
 	
 	public init(from decoder: Decoder) throws {
 		
