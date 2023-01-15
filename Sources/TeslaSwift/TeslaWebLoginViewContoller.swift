@@ -12,7 +12,7 @@ import WebKit
 #if os(macOS)
 import AppKit
 public class TeslaWebLoginViewController: NSViewController {
-  
+      
     var webView = WKWebView()
     private var continuation: CheckedContinuation<URL, Error>?
     
@@ -66,23 +66,13 @@ public class TeslaWebLoginViewController: UIViewController {
     }
 }
 
-extension UIViewController {
-    func dismiss(completion: @escaping () -> ()) {
-        dismiss(animated: true, completion: completion)
-    }
-}
-
 #endif
-    
 
 extension TeslaWebLoginViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = navigationAction.request.url, url.absoluteString.starts(with: "https://auth.tesla.com/void/callback") {
             decisionHandler(.cancel)
-            
-            self.dismiss() {
-                self.continuation?.resume(returning: url)
-            }
+            self.continuation?.resume(returning: url)
         } else {
             decisionHandler(.allow)
         }
