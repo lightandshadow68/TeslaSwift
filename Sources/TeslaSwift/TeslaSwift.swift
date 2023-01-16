@@ -44,6 +44,8 @@ extension TeslaSwift {
     public var isAuthenticated: Bool {
         return token != nil && (token?.isValid ?? false)
     }
+    
+    #if canImport(WebKit)
 
     /**
      Performs the authentication with the Tesla API for web logins
@@ -108,6 +110,9 @@ extension TeslaSwift {
             }
         }
     }
+    
+    
+    #endif
 
     /**
      Performs the token refresh with the Tesla API for Web logins
@@ -137,6 +142,7 @@ extension TeslaSwift {
             }
         }
     }
+
 
 	/**
 	Use this method to reuse a previous authentication token

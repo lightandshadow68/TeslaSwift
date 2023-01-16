@@ -79,9 +79,7 @@ extension TeslaWebLoginViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        self.dismiss() {
-            self.continuation?.resume(throwing: TeslaError.authenticationFailed)
-        }
+        self.continuation?.resume(throwing: TeslaError.authenticationFailed)
     }
 }
 
